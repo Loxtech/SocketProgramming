@@ -9,7 +9,8 @@ namespace SocketProgrammingServer
     {
         public SocketServer() 
         {
-            while (true) StartServer();  
+            new MultiThreading().StartThreading();
+           //StartServer();  
         }
         internal void StartServer()
         {
@@ -26,6 +27,10 @@ namespace SocketProgrammingServer
             
             while(true) ConnectToClient(listener);
         }
+        /// <summary>
+        /// Accepts connection from client and recives message from it
+        /// </summary>
+        /// <param name="listener"></param>
         private static void ConnectToClient(Socket listener)
         {
             Socket handler = listener.Accept();
@@ -39,6 +44,11 @@ namespace SocketProgrammingServer
 
             Console.WriteLine(data);
         }
+        /// <summary>
+        /// Receives message from client
+        /// </summary>
+        /// <param name="socket"></param>
+        /// <returns></returns>
         private static string GetMessage(Socket socket)
         {
             string data = null;
